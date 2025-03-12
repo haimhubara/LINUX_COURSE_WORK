@@ -1,0 +1,9 @@
+    1  mkdir Work/Q5
+    2  git branch BR_Q5
+    3  git switch BR_Q5
+    4  docker pull ubuntu
+    5  docker run -it --name Q5_1_container ubuntu
+    6  docker cp Q5_1_container:/output_1.png $(pwd)/
+    7  docker start -i Q5_1_container
+    8  docker cp Q5_1_container:/output_2.png $(pwd)/
+    9  history > history_Q5_1.txt

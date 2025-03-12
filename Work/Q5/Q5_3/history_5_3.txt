@@ -1,0 +1,82 @@
+    1  mkdir Work/Q5
+    2  git branch BR_Q5
+    3  git switch BR_Q5
+    4  docker pull ubuntu
+    5  docker run -it --name Q5_1_container ubuntu
+    6  docker cp Q5_1_container:/output_1.png $(pwd)/
+    7  docker start -i Q5_1_container
+    8  docker cp Q5_1_container:/output_2.png $(pwd)/
+    9  history > history_Q5_1.txt
+   10  cd ../..
+   11  git add .
+   12  git commit -m"Finish with Q5_1"
+   13  git switch main
+   14  git push -u origin main BR_Q5
+   15  clear
+   16  cd ./Work/Q5/
+   17  touch Dockerfile
+   18  cp ../Q2/plant_plots.py .
+   19  cp ../Q2/requirements.txt .
+   20  docker build -t python-runner .
+   21  docker run -it  --name plant-simulation python-runner --plant "Rose" --height 50 55 60 65 70 --leaf_count 35 40 45 50 55 --dry_weight 2.0 2.2 2.5 2.7 3.0
+   22  ls
+   23  docker cp plant-simulation:/app/. $(pwd)/
+   24  mv *.png ./plots/
+   25  clear
+   26  touch Dockerfile
+   27  cp ../Q2/plant_plots.py .
+   28  docker build -t python-runner .
+   29  docker run -it  --name plant-simulation python-runner --plant "Rose" --height 50 55 60 65 70 --leaf_count 35 40 45 50 55 --dry_weight 2.0 2.2 2.5 2.7 3.0
+   30  docker cp plant-simulation:/app/. $(pwd)/
+   31  mv Rose*.png ./plots/
+   32  git add .
+   33  git push -u origin main
+   34  clear
+   35  mkdir Q5_3
+   36  cd Q5_3
+   37  touch Dockerfile
+   38  touch Watermar.java
+   39  touch watermark.sh
+   40  chmod +x watermark.sh 
+   41  ls
+   42  docker build -t java-runner .
+   43  docker run -it -v $(pwd):/app --entrypoint /bin/bash java-runne
+   44  docker run -it -v $(pwd):/app --entrypoint /bin/bash java-runner
+   45  mv ../plots .
+   46  docker run -it -v $(pwd):/app --entrypoint /bin/bash java-runner
+   47  mkdir Q5_3
+   48  cd ..
+   49  cd ~
+   50  cd LINUX_COURSE_PROJECT/
+   51  cd Work/Q5
+   52  clear
+   53  mkdir Q5_3
+   54  cd Q5_3
+   55  touch Dockerfile
+   56  touch Watermark.java
+   57  touch watermark.sh
+   58  #!/bin/bash
+   59  # הגדרת משתנים
+   60  OUTPUT_DIR="$(pwd)/output_images/"  
+   61  IMAGE_5_2="python-runner"
+   62  NAME_5_2="5.2container"
+   63  IMAGE_5_3='java-runner'
+   64  NAME_5_3='5.3container'
+   65  # יצירת תיקיית פלט אם לא קיימת
+   66  mkdir -p "$OUTPUT_DIR"
+   67  # פונקציה להריץ את הקונטיינר של Python 5.2
+   68  run_container_python() {     echo "🚀 Running Docker container: $IMAGE_5_2...";     docker run -it --name "$NAME_5_2" "$IMAGE_5_2" --plant "Rose" --height 50 55 60 65 70 --leaf_count 35 40 45 50 55 --dry_weight 2.0 2.2 2.5 2.7 3.0;     if [ $? -ne 0 ]; then         echo "❌ Failed to run Python Docker container. Exiting...";         exit 1;     fi;     echo "✅ Python Docker container running!"; }
+   69  # פונקציה להריץ את הקונטיינר של Java 5.3
+   70  run_container_java() {     echo "🚀 Running Docker container: $IMAGE_5_3..."    
+    docker run -it --name "$NAME_5_3" -v "$(pwd)":/app --entrypoint /bin/bash "$IMAGE_5_3" -c "javac Watermark.java && java Watermark /app 'Haim Hubara' 318688777";     if [ $? -ne 0 ]; then         echo "❌ Failed to run Java Docker container. Exiting...";         exit 1;     fi;     echo "✅ Java Docker container running!"; }
+   71  # פונקציה להעתקת קבצים מהקונטיינר של Python
+   72  copy_files_from_container_python() {     echo "📦 Copying files from the Python Docker container...";     docker cp "$NAME_5_2:/app/Rose_scatter.png" "$OUTPUT_DIR/Rose_scatter.png";     docker cp "$NAME_5_2:/app/Rose_histogram.png" "$OUTPUT_DIR/Rose_histogram.png";     docker cp "$NAME_5_2:/app/Rose_line_plot.png" "$OUTPUT_DIR/Rose_line_plot.png";     if [ $? -ne 0 ]; then         echo "❌ Failed to copy files from Python container. Exiting...";         exit 1;     fi;     echo "✅ Files copied successfully from Python container!"; }
+   73  # פונקציה לנקות את המשאבים
+   74  cleanup() {     echo "🧹 Cleaning up..."    
+    if [ "$(docker ps -aq -f name=$NAME_5_2)" ]; then         echo "Removing Python container ($NAME_5_2)...";         docker rm -f "$NAME_5_2";     else         echo "Python container ($NAME_5_2) does not exist or is already removed.";     fi     if [ "$(docker ps -aq -f name=$NAME_5_3)" ]; then         echo "Removing Java container ($NAME_5_3)...";         docker rm -f "$NAME_5_3";     else         echo "Java container ($NAME_5_3) does not exist or is already removed.";     fi         echo "✅ Cleanup done!"; }
+   75  clear
+   76  chmod +x watermark.sh 
+   77  ls
+   78  docker build -t java-runner .
+   79  mv ../plots .
+   80  docker run -it -v $(pwd):/app --entrypoint /bin/bash java-runner

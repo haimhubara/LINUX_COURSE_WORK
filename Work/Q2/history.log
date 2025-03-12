@@ -1,0 +1,25 @@
+    1  history
+    2  clear
+    3  git branch BR_Q2
+    4  git switch BR_Q2
+    5  cp DOWNLOADS/LINUX_COURSE_WORK-downloads/plant.py Work/Q2/
+    6  pip3 install matplotlib
+    7  python3 Work/Q2/plant.py
+    8  clear
+    9  mkdir -p Work/Q2/Diagrams_1
+   10  git add .
+   11  git commit -m "Working on branch BR_Q2"
+   12  git switch main
+   13  git merge BR_Q2
+   14  git push -u origin main BR_Q2
+   15  clear
+   16  git switch BR_Q2
+   17  echo "matplotlib" >> requirements.txt
+   18  pip3 uninstall matplotlib
+   19  mv requirements.txt ./Work/Q2
+   20  clear
+   21  python3 ./Work/Q2/plant_plots.py --plant "Rose" --height 50 55 60 65 70 --leaf_count 35 40 45 50 55 --dry_weight 2.0 2.2 2.5 2.7 3.0
+   22  mv Rose_histogram.png Rose_line_plot.png Rose_scatter.png Work/Q2/Diagrams_2
+   23  tar -czvf BACKUP/$(date +'%Y-%m-%d_%H-%M-%S')plants_backup.tar.gz -C Work/Q2/Diagrams_2 .
+   24  rm Work/Q2/Diagrams_2/*
+   25  history >> Work/Q2/history.log

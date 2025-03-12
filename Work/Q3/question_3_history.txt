@@ -1,0 +1,7 @@
+    1  git branch BR_Q3
+    2  touch Work/Q3/menu.sh
+    3  git branch BR_CSV
+    4  git switch BR_CSV
+    5  chmod +x Work/Q3/menu.sh
+    6  ./Work/Q3/menu.sh
+    7  history >> Work/Q3/question_3_history.txt

@@ -1,0 +1,42 @@
+.
+├── BACKUP
+├── CODE
+│   └── LINUX_COURSE_WORK-downloads
+│       ├── FIle_1.txt
+│       ├── File_2.txt
+│       ├── img1.jpg
+│       ├── img2.jpg
+│       ├── img3.jpg
+│       ├── plant.py
+│       ├── plants.csv
+│       └── py1.py
+├── DATA
+│   ├── FIle_1.txt
+│   ├── File_2.txt
+│   ├── img1.jpg
+│   ├── img2.jpg
+│   ├── img3.jpg
+│   └── plants.csv
+├── DOWNLOADS
+│   └── LINUX_COURSE_WORK-downloads
+│       ├── FIle_1.txt
+│       ├── File_2.txt
+│       ├── img1.jpg
+│       ├── img2.jpg
+│       ├── img3.jpg
+│       ├── plant.py
+│       ├── plants.csv
+│       └── py1.py
+└── Work
+    ├── Q1
+    │   └── Q1_output.txt
+    ├── Q2
+    ├── Q3
+    └── Q4
+
+11 directories, 23 files
+Time: Wed Mar 12 17:28:18 IST 2025
+USER DETAILS: haimhubara
+REPO: /home/haimhubara/LINUX_COURSE_PROJECT
+GithubURL: https://github.com/haimhubara/LINUX_COURSE_WORK
+VERSION: VERSION="22.04.3 LTS (Jammy Jellyfish)"

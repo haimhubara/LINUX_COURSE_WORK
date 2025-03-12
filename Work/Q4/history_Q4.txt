@@ -1,0 +1,20 @@
+    1  git branch BR_Q4
+    2  git switch BR_Q4
+    3  python3 -m venv my_env
+    4  cd ..
+    5  touch .gitignore
+    6  echo  "Work/Q4/my_env" >> .gitignore 
+    7  cd ./Work/Q4
+    8  source my_env/bin/activate
+    9  pip3 install -r ../Q2/requirements.txt
+   10  touch run_plots.sh
+   11  ls -la
+   12  clear
+   13  rm -r ./Diagrams/*
+   14  touch update_run_plots.sh
+   15  chmod +x update_run_plots.sh
+   16  rm -r Diagrams
+   17  ./update_run_plots.sh -o ./output -t -d ../../BACKUP ../../check.csv (3 flasg  one output file  2 zip the folders  3 move the zip)
+   18  ./update_run_plots.sh -o ./output -t -d ../../BACKUP ../Q3/check.csv
+   19  ./update_run_plots.sh -o ./output -t -d ../../BACKUP ../Q3/check2.csv
+   20  history >> history_Q4.txt
